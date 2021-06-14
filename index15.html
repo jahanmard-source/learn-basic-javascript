@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <title>index2</title>
+    <script>
+        //Project Desc = اگر نام کاربری یا پسورد خالی بود پیغام دهد که باید تکمیل شوند.
+        function show() {
+            let username = document.getElementById("txtUserName");
+            let username_error_div = document.getElementById("txtUserName_error");
+            let password = document.getElementById("txtPassword");
+            let password_error_div = document.getElementById("txtPassword_error");
+            if( username.value.trim()==""){
+                username_error_div.innerHTML="نام کاربری خود را وارد نمایید";
+                username.classList.add("has-error");
+            }
+            else{
+                if (username.value.trim().length < 4) {
+                    username.classList.add("has-error");
+                    username_error_div.innerHTML = "نام کاربری حداقل دارای 4 کاراکتر باید باشد";
+                }
+                else{
+                    username.classList.remove("has-error");
+                    username_error_div.innerHTML = ""
+                }
+            }
+            if (password.value.trim()== "") {
+                password_error_div.innerHTML="پسورد خود را وارد نمایید";
+                password.classList.add("has-error");
+            }
+            else{
+                if (password.value.trim().length < 4) {
+                    password.classList.add("has-error");
+                    password_error_div.innerHTML="پسورد حداقل دارای 4 کاراکتر باید باشد"
+                }
+                else{
+                    password.classList.remove("has-error");
+                    password_error_div.innerHTML = ""
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="main-div">
+    <div class="main-input">
+        <div class="user-div">
+            <div>
+                <input id="txtUserName" type="text" placeholder="نام کاربری خود را وارد نمایید" class="textinput">
+                <div id="txtUserName_error" class="error-text"></div>
+            </div>
+            <div>
+                <p> نام کاربری:</p> 
+            </div>
+        </div>
+        <div>
+            <div class="pass-div">
+                <div>
+                    <input id="txtPassword" type="password" placeholder="رمز عبور خود را وارد نمایید" class="textinput">
+                    <div id="txtPassword_error" class="error-text"></div>
+                </div>
+                <div>
+                    <p>رمز عبور:</p>
+                </div>
+            </div>
+        </div>
+        <div class="box-div">
+            <div>
+                <input class="" type="checkbox">
+            </div>
+            <div class="remember">
+                <p>من را بخاطر بسپار</p>
+            </div>
+        </div>
+        <div>
+            <div class="button-div">
+                    <button onclick="show()" type="button">ثبت </button>
+            </div>
+        </div>
+    </div>
+        </div>
+
+</body>
+</html>

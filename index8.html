@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <title>index2</title>
+    <script>
+        //Project Desc = قرار است یک چک باکسی باز شود که عبارت "متن ذیل را پذیرفته ام" درج شود
+        function updatetext() {
+            let chked = document.getElementById("box");
+            if (chked.checked) {
+                document.getElementById('validation').innerText ='checked'
+            } else {
+                document.getElementById('validation').innerText ='unckeched'
+            }
+        }
+    </script>
+</head>
+<body>
+  <input id="box" onclick="updatetext()" type="checkbox">
+  <div id="validation"></div>
+</body>
+</html>

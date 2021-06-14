@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <title>index2</title>
+    <script>
+        //Project Desc = اگر نام کاربری  برابر thara و رمز عبور برابر Aa123456 بود بره به گوگل 
+        function show() {
+            let username = document.getElementById("txtUserName").value;
+            let password = document.getElementById("txtPassword").value;
+            if( username=="thara" &&  password=="Aa123456"){
+                window.location="http://www.google.com";
+            }
+            else{
+                alert("login failed !")
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="main-div">
+    <div class="main-input">
+        <div class="user-div">
+            <div>
+                <input id="txtUserName" type="text" placeholder="نام کاربری خود را وارد نمایید" class="textinput">
+            </div>
+            <div>
+                <p> نام کاربری:</p> 
+            </div>
+        </div>
+        <div>
+            <div class="pass-div">
+                <div>
+                    <input id="txtPassword" type="password" placeholder="رمز عبور خود را وارد نمایید" class="textinput">
+                </div>
+                <div>
+                    <p>رمز عبور:</p>
+                </div>
+            </div>
+        </div>
+        <div class="box-div">
+            <div>
+                <input class="" type="checkbox">
+            </div>
+            <div class="remember">
+                <p>من را بخاطر بسپار</p>
+            </div>
+        </div>
+        <div>
+            <div class="button-div">
+                    <button onclick="show()" type="button">ثبت </button>
+            </div>
+        </div>
+    </div>
+        </div>
+
+</body>
+</html>

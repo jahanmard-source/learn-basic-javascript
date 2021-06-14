@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script>
+        function validation() {
+            let username = document.getElementById("firstName");
+            let username_error_div = document.getElementById("txtFirstName_error");
+            let lastName = document.getElementById("lastName");
+            let lastName_error_div = document.getElementById("txtlastName_error");
+            let email = document.getElementById("email");
+            let email_error_div = document.getElementById("txtEmail_error");
+            let password = document.getElementById("pwd");
+            let password_error_div = document.getElementById("txtPwd_error");
+            let confirmPassword = document.getElementById("con-pwd");
+            let confirmPassword_error_div = document.getElementById("txtCon-pwd_error");
+            let validationResult = true;
+            if (username.value.trim() == "") {
+                username_error_div.innerHTML = "نام خود را وارد نمایید";
+                username.classList.add("has-error");
+                validationResult = false;
+            }
+            else {
+                if (username.value.trim().length < 4) {
+                    username.classList.add("has-error");
+                    username_error_div.innerHTML = "نام کاربری حداقل دارای 4 کاراکتر باید باشد";
+                    validationResult = false;
+                }
+                else {
+                    username.classList.remove("has-error");
+                    username_error_div.innerHTML = "";
+                }
+            }
+            if (lastName.value.trim() == "") {
+                lastName_error_div.innerHTML = "نام خانوادگی خود را وارد نمایید";
+                lastName.classList.add("has-error");
+                validationResult = false;
+            }
+            else {
+                if (lastName.value.trim().length < 4) {
+                    lastName.classList.add("has-error");
+                    lastName_error_div.innerHTML = "نام خانوادگی حداقل دارای 4 کاراکتر باید باشد";
+                    validationResult = false;
+                }
+                else {
+                    lastName.classList.remove("has-error");
+                    lastName_error_div.innerHTML = "";
+                }
+            }
+            if (email.value.trim() == "") {
+                email_error_div.innerHTML = "نام کاربری خود را وارد نمایید";
+                email.classList.add("has-error");
+                validationResult = false;
+            }
+            else {
+                if (email.value.trim().length < 4) {
+                    email.classList.add("has-error");
+                    email_error_div.innerHTML = "نام کاربری حداقل باید 4 کاراکتر داشته باشد";
+                    validationResult = false;
+                }
+                else {
+                    email.classList.remove("has-error");
+                    email_error_div.innerHTML = "";
+                }
+            }
+            if (password.value.trim() == "") {
+                password_error_div.innerHTML = "پسورد خود را وارد نمایید";
+                password.classList.add("has-error");
+                validationResult = false;
+            }
+            else {
+                if (!CheckPasswordIsValid(password.value.trim())) {
+                    password_error_div.innerHTML = "پسورد خود را با کاراکترهای صحیح وارد نمایید"
+                    password.classList.add("has-error");
+                    validationResult = false;
+                }
+                else {
+                    password.classList.remove("has-error");
+                    password_error_div.innerHTML = "";
+                }
+            }
+            if (confirmPassword.value.trim() == "") {
+                confirmPassword_error_div.innerHTML = "تکرار پسورد خود را وارد نمایید";
+                confirmPassword.classList.add("has-error");
+                validationResult = false;
+            }
+            else {
+                if (!CheckPasswordIsValid(confirmPassword.value.trim())) {
+                    confirmPassword_error_div.innerHTML = "پسورد خود را با کاراکترهای صحیح وارد نمایید"
+                    confirmPassword.classList.add("has-error");
+                    validationResult = false;
+                }
+                else {
+                    confirmPassword.classList.remove("has-error");
+                    confirmPassword_error_div.innerHTML = "";
+                }
+            }
+            return validationResult;
+        }
+        function CheckPasswordIsValid(psw) {
+            if (hasLowerCase(psw) && hasUpperCase(psw)) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        function hasLowerCase(str) {
+            return (/[a-z]/.test(str));
+        }
+        function hasUpperCase(str) {
+            return (/[A-Z]/.test(str));
+        }
+        function submit() {
+            let resultThara = validation();
+            if (resultThara) {
+                document.getElementById("overlay-box").classList.add('active');
+                setTimeout(fnlSubmit, 1000);
+            }
+        }
+        function fnlSubmit() {
+            document.getElementById('overlay-box').classList.remove('active');
+            document.getElementById("card-firstName").innerHTML= document.getElementById("firstName").value
+            document.getElementById("card-lastName").innerHTML= document.getElementById("lastName").value
+            document.getElementById("card-email").innerHTML= document.getElementById("email").value
+            document.getElementById("firstName").value="";
+            document.getElementById("lastName").value="";
+            document.getElementById("email").value="";
+            document.getElementById("pwd").value="";
+            document.getElementById("con-pwd").value="";
+        }
+    </script>
+    <title>فرم ثبت نام</title>
+</head>
+
+<body>
+    <div class="jumbotron text-center">
+        <h1>فرم عضویت</h1>
+    </div>
+    <div class=" alert alert-danger d-none"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 rules frm-register">
+                <div class="overlay" id="overlay-box">
+                    <img src="images/loading.gif" />
+                </div>
+                <h3>تکمیل اطلاعات</h3>
+                <div>
+                    <label for="text">:نام</label>
+                    <input type="text" class="form-control txt-rules" id="firstName" placeholder="نام را وارد نمایید"name="firstName">
+                    <div id="txtFirstName_error" class="error-text"></div>
+                </div>
+                <div>
+                    <label for="text">:نام خانوادگی</label>
+                    <input type="text" class="form-control txt-rules" id="lastName"
+                        placeholder="نام خانوادگی را وارد نمایید" name="lastName">
+                    <div id="txtlastName_error" class="error-text"></div>
+                </div>
+                <div>
+                    <label for="email">:نام کاربری</label>
+                    <input type="email" class="form-control txt-rules" id="email"
+                        placeholder="نام کاربری خود را وارد نمایید" name="email">
+                    <div id="txtEmail_error" class="error-text"></div>
+                </div>
+                <div class="pwd-fld-container">
+                    <div class="pwd-tooltip">
+                        <div id="letter" class="invalid">A lowercase letter A capital (uppercase) letter A number
+                            Minimum 8 characters</div>
+                    </div>
+                    <label for="pwd">:رمز عبور</label>
+                    <input type="password" class="form-control txt-rules" id="pwd"
+                        placeholder="رمز عبور خود را درج نمایید" name="pwd">
+                    <div id="txtPwd_error" class="error-text"></div>
+                </div>
+                <div class="pwd-fld-container">
+                    <div class="pwd-tooltip">
+                        <div id="letter" class="invalid">A lowercase letter A capital (uppercase) letter A number
+                            Minimum 8 characters</div>
+                    </div>
+                    <label for="pwd">:تکرار مرز عبور</label>
+                    <input type="password" class="form-control txt-rules" id="con-pwd"
+                        placeholder="تکرار رمز عبور خود را درج نمایید" name="con-pwd">
+                    <div id="txtCon-pwd_error" class="error-text"></div>
+                </div>
+                <div class="checkbox remember-box">
+                    <label class="remember-check"><input class="rem-box" type="checkbox" name="remember"> <a
+                            data-toggle="modal" data-target="#laws">&nbsp; قوانین</a>را خوانده ام</label>
+
+                </div>
+                <button onclick="submit()" type="submit" class="btn btn-default sub btn-primary btn-sm">ثبت</button>
+            </div>
+            <div class="col-sm-6 rules">
+                <div class="card">
+                    <div class="card-header icon-avatar">نمایش اطلاعات
+                        <img style="border-radius: 50%;" src="images/avatar.jpg" />
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <label for="text">نام <span id="card-firstName"></span></label>
+                        </div>
+                        </br>
+                        <div>
+                            <label for="text">نام خانوادگی <span id="card-lastName"></span></label>
+                        </div>
+                        </br>
+                        <div>
+                            <label for="email">نام کاربری <span id="card-email"></span></label>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="laws" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">قوانین سایت</h4>
+                </div>
+                <div class="modal-body">
+                    <p>لورم ایپسوم یا طرح‌نما (به انگلیسی: Lorem ipsum) به متنی آزمایشی و بی‌معنی در صنعت چاپ،
+                        صفحه‌آرایی و طراحی گرافیک گفته می‌شود. طراح گرافیک از این متن به عنوان عنصری از ترکیب بندی برای
+                        پر کردن صفحه و ارایه اولیه شکل ظاهری و کلی طرح سفارش گرفته شده استفاده می نماید، تا از نظر
+                        گرافیکی نشانگر چگونگی نوع و اندازه فونت و ظاهر متن باشد. معمولا طراحان گرافیک برای صفحه‌آرایی،
+                        نخست از متن‌های آزمایشی و بی‌معنی استفاده می‌کنند تا صرفا به مشتری یا صاحب کار خود نشان دهند که
+                        صفحه طراحی یا صفحه بندی شده بعد از اینکه متن در آن قرار گیرد چگونه به نظر می‌رسد و قلم‌ها و
+                        اندازه‌بندی‌ها چگونه در نظر گرفته شده‌است. از آنجایی که طراحان عموما نویسنده متن نیستند و وظیفه
+                        رعایت حق تکثیر متون را ندارند و در همان حال کار آنها به نوعی وابسته به متن می‌باشد آنها با
+                        استفاده از محتویات ساختگی، صفحه گرافیکی خود را صفحه‌آرایی می‌کنند تا مرحله طراحی و صفحه‌بندی را
+                        به پایان برند.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">بستن</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>
