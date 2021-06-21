@@ -218,3 +218,8 @@ a[data-toggle='modal']{
     border-left: 6px solid rgba(227, 228, 230, 0.288);
     height: 500px;
   }
+  .info-table{
+      direction: rtl;
+      text-align: center;
+
+  }
