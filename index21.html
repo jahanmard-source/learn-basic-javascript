@@ -126,14 +126,13 @@
                 setTimeout(fnlSubmit, 1000);
             }
         }
-    
         function fnlSubmit() {
             document.getElementById('overlay-box').classList.remove('active');
             /*document.getElementById("card-firstName").innerHTML = document.getElementById("firstName").value
             document.getElementById("card-lastName").innerHTML = document.getElementById("lastName").value
             document.getElementById("card-email").innerHTML = document.getElementById("email").value*/
             let count = document.getElementById("count-tbl").rows.length;
-            document.getElementById("info-tbl").innerHTML = document.getElementById("info-tbl").innerHTML + "<td>" + count + "</td>"+"<td>" + document.getElementById("firstName").value + "</td>"+"<td>" + document.getElementById("lastName").value + "</td>"+"<td>" + document.getElementById("email").value + "</td>"+"<td><input type=\"button\" value=\"حذف\" onclick=\"deleteRow(this)\" class=\"btn btn-danger\"></td>" + "</tr>";
+            document.getElementById("info-tbl").innerHTML = document.getElementById("info-tbl").innerHTML + "<td>" + count + "</td>" + "<td>" + document.getElementById("firstName").value + "</td>" + "<td>" + document.getElementById("lastName").value + "</td>" + "<td>" + document.getElementById("email").value + "</td>" + "<td><input type=\"button\" value=\"حذف\" onclick=\"deleteRow(this)\" class=\"btn btn-danger\"></td>" + "</tr>";
             document.getElementById("firstName").value = "";
             document.getElementById("lastName").value = "";
             document.getElementById("email").value = "";
@@ -143,10 +142,11 @@
         function deleteRow(element) {
             //element.parentNode = td
             //element.parentNode.parentNode = tr
-            var i = element.parentNode.parentNode.rowIndex;
-            document.getElementById("count-tbl").deleteRow(i);
-
-            //let i = document.getElementById().deleteRow(i);
+            let result = confirm("آیا مایل به حذف میباشید؟");
+            if (result) {
+                var i = element.parentNode.parentNode.rowIndex;
+                document.getElementById("count-tbl").deleteRow(i);
+            }
         }
     </script>
     <title>فرم ثبت نام</title>
