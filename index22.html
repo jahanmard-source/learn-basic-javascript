@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script>
+        
+        function readData() {
+            //Javascript Object
+            // let Obj = {
+            //     KEY:VALUE,
+            //     KEY:VALUE,
+            //     KEY:VALUE
+            // 
+            let users = [
+                {
+                    id:4,
+                    firstname:"mehrzad",
+                    lastname:"tejareh",
+                    username:"mtj"
+                },
+                {
+                    id:9,
+                    firstname:"thara",
+                    lastname:"jahanmard",
+                    username:"tharay90"
+                }
+            ];
+            for (let i = 0; i < users.length; i++) {
+                document.getElementById("info-tbl").innerHTML = document.getElementById("info-tbl").innerHTML + "<td>" + users[i].id + "</td>" + "<td>" + users[i].firstname + "</td>" + "<td>" + users[i].lastname + "</td>" + "<td>" + users[i].username + "</td>" + "<td><input type=\"button\" value=\"حذف\" onclick=\"deleteRow(this)\" class=\"btn btn-danger\"></td>" + "</tr>";
+            }
+        }
+    </script>
+    <title>خواندن اطلاعات JSON</title>
+</head>
+
+<body>
+    <div class="jumbotron text-center">
+        <h1>خواندن اطلاعات</h1>
+    </div>
+    <div class=" alert alert-danger d-none"></div>
+    <button onclick="readData()">خواندن اطلاعات</button>
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-sm-12 rules">
+                <div class="card">
+                    <div class="card-header icon-avatar"> نمایش اطلاعات کاربران
+                        <img style="border-radius: 50%;" src="images/avatar.jpg" />
+                    </div>
+                    <table class="table table-striped info-table" id="count-tbl">
+                        <thead>
+                            <tr>
+                                <th>ردیف</th>
+                                <th>نام</th>
+                                <th>نام خانوادگی</th>
+                                <th>نام کاربری</th>
+                            </tr>
+                        </thead>
+                        <tbody id="info-tbl">
+                            <tr>
+                                <td>1</td>
+                                <td>سارا</td>
+                                <td>جهان مرد</td>
+                                <td>ثارای</td>
+                                <td><input type="button" value="حذف" onclick="deleteRow(this)" class="btn btn-danger">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>مهرزاد</td>
+                                <td>تجاره</td>
+                                <td>مهرزادی</td>
+                                <td><input type="button" value="حذف" onclick="deleteRow(this)" class="btn btn-danger">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="laws" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">قوانین سایت</h4>
+                </div>
+                <div class="modal-body">
+                    <p>لورم ایپسوم یا طرح‌نما (به انگلیسی: Lorem ipsum) به متنی آزمایشی و بی‌معنی در صنعت چاپ،
+                        صفحه‌آرایی و طراحی گرافیک گفته می‌شود. طراح گرافیک از این متن به عنوان عنصری از ترکیب بندی برای
+                        پر کردن صفحه و ارایه اولیه شکل ظاهری و کلی طرح سفارش گرفته شده استفاده می نماید، تا از نظر
+                        گرافیکی نشانگر چگونگی نوع و اندازه فونت و ظاهر متن باشد. معمولا طراحان گرافیک برای صفحه‌آرایی،
+                        نخست از متن‌های آزمایشی و بی‌معنی استفاده می‌کنند تا صرفا به مشتری یا صاحب کار خود نشان دهند که
+                        صفحه طراحی یا صفحه بندی شده بعد از اینکه متن در آن قرار گیرد چگونه به نظر می‌رسد و قلم‌ها و
+                        اندازه‌بندی‌ها چگونه در نظر گرفته شده‌است. از آنجایی که طراحان عموما نویسنده متن نیستند و وظیفه
+                        رعایت حق تکثیر متون را ندارند و در همان حال کار آنها به نوعی وابسته به متن می‌باشد آنها با
+                        استفاده از محتویات ساختگی، صفحه گرافیکی خود را صفحه‌آرایی می‌کنند تا مرحله طراحی و صفحه‌بندی را
+                        به پایان برند.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">بستن</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+    <script>
+        $('.password-prpover').popover();
+        $('.conpassword-prpover').popover();
+    </script>
+</body>
+
+</html>
