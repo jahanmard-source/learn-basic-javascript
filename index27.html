@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <title>list Users</title>
+    <script>
+        function fnlSubmit() {
+            let count = document.getElementById("count-tbl").rows.length;
+            document.getElementById("info-tbl").innerHTML = document.getElementById("info-tbl").innerHTML + "<td>" + count + "</td>" + "<td>" + document.getElementById("firstName").value + "</td>" + "<td>" + document.getElementById("lastName").value + "</td>" + "<td>" + document.getElementById("email").value + "</td>" + "<td><input type=\"button\" value=\"حذف\" onclick=\"deleteRow(this)\" class=\"btn btn-danger\"></td>" + "</tr>";
+        }
+    </script>
+</head>
+
+<body onload="test()">
+    <div class="jumbotron text-center">
+        <h1>لیست کاربران</h1>
+    </div>
+    <div class=" alert alert-danger d-none"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 rules">
+                <div class="card">
+                    <div class="card-header icon-avatar"> نمایش اطلاعات کاربران
+                        <img style="border-radius: 50%;" src="images/avatar.jpg" />
+                    </div>
+                    <table class="table table-striped info-table" id="count-tbl">
+                        <thead>
+                            <tr>
+                                <th>ردیف</th>
+                                <th>نام</th>
+                                <th>نام خانوادگی</th>
+                                <th>نام کاربری</th>
+                                <th>تصویر</th>
+                            </tr>
+                        </thead>
+                        <tbody id="info-tbl">
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    function test(){
+        $.ajax({
+            url: "https://reqres.in/api/users?page=2",
+            success: function(users){
+                debugger;
+                for (let i = 0; i < users.data.length; i++) {
+                    const element = users.data[i];
+                    let count = document.getElementById("count-tbl").rows.length;
+                    document.getElementById("info-tbl").innerHTML = document.getElementById("info-tbl").innerHTML + "<td>" + users.data[i].id + "</td>" + "<td>" + users.data[i].first_name + "</td>" + "<td>" + users.data[i].last_name + "</td>" + "<td>" + users.data[i].email + "</td>" + "<td><img class=\"avatar\" src='" + users.data[i].avatar + "' /></td>" + "<td><input type=\"button\" value=\"مشاهده بیشتر\" onclick=\"deleteRow(this)\" class=\"btn btn-info\"></td>" + "</tr>";
+                }
+            }
+        })
+    }
+</script>
+
+</html>

@@ -16,6 +16,7 @@
             $.ajax({
                 url: "out_data.json", 
                 success: function(result){
+                
                     for (let i = 0; i < result.users.length; i++) {
                         document.getElementById("info-tbl").innerHTML = document.getElementById("info-tbl").innerHTML + "<td>" + result.users[i].id + "</td>" + "<td>" + result.users[i].firstname + "</td>" + "<td>" + result.users[i].lastname + "</td>" + "<td>" + result.users[i].username + "</td>" + "<td><input type=\"button\" value=\"حذف\" onclick=\"deleteRow(this)\" class=\"btn btn-danger\"></td>" + "</tr>";
                     }
@@ -52,7 +53,7 @@
                         <tbody id="info-tbl">
                             <tr>
                                 <td>1</td>
-                                <td>سارا</td>
+                                <td>ثارا</td>
                                 <td>جهان مرد</td>
                                 <td>ثارای</td>
                                 <td><input type="button" value="حذف" onclick="deleteRow(this)" class="btn btn-danger">
