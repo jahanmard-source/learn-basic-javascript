@@ -297,6 +297,23 @@ span.psw {
 .avatar{
     border-radius: 50%;
 }
+.modal-box{
+    border: 1px solid #8f8d89;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+    padding: 12px;
+    background-color: #e6b993;
+}
+.modal-box-title{
+    padding-right: 84px !important;
+    width: unset !important
+}
+.box-header{
+    align-items:unset !important;
+}
+.title-mod{
+    font-size: 1.2rem;
+}
 
 
 

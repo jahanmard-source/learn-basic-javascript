@@ -12,14 +12,68 @@
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
     <title>list Users</title>
     <script>
-        function fnlSubmit() {
-            let count = document.getElementById("count-tbl").rows.length;
-            document.getElementById("info-tbl").innerHTML = document.getElementById("info-tbl").innerHTML + "<td>" + count + "</td>" + "<td>" + document.getElementById("firstName").value + "</td>" + "<td>" + document.getElementById("lastName").value + "</td>" + "<td>" + document.getElementById("email").value + "</td>" + "<td><input type=\"button\" value=\"حذف\" onclick=\"deleteRow(this)\" class=\"btn btn-danger\"></td>" + "</tr>";
-        }
     </script>
 </head>
-
 <body onload="test()">
+  <div class="modal fade" id="moreUserInfo" role="dialog">
+    <div class="modal-dialog">
+          <div class="modal-content">
+        <div class="modal-header box-header">
+          <button type="button" class="close modal-box-title" data-dismiss="modal">&times;</button>
+          <div class="">
+            <h4 class="modal-title title-mod">اطلاعات بیشتر کاربر</h4>
+          </div>
+        </div>
+        <div class="modal-body">
+            <div class="modal-box">
+                <div>
+                    <div>
+                        ID: 
+                    </div>
+                    <div id="label_id">
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        Email: 
+                    </div>
+                    <div id="label_email">
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        First Name: 
+                    </div>
+                    <div id="label_first_name">
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        Last Name: 
+                    </div>
+                    <div id="label_last_name">
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        Avatar: 
+                    </div>
+                    <div>
+                        <img id="label_avatar"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">بستن</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+
     <div class="jumbotron text-center">
         <h1>لیست کاربران</h1>
     </div>
@@ -49,21 +103,45 @@
             </div>
         </div>
     </div>
+    
 </body>
 <script>
     function test(){
         $.ajax({
             url: "https://reqres.in/api/users?page=2",
             success: function(users){
-                debugger;
                 for (let i = 0; i < users.data.length; i++) {
                     const element = users.data[i];
                     let count = document.getElementById("count-tbl").rows.length;
-                    document.getElementById("info-tbl").innerHTML = document.getElementById("info-tbl").innerHTML + "<td>" + users.data[i].id + "</td>" + "<td>" + users.data[i].first_name + "</td>" + "<td>" + users.data[i].last_name + "</td>" + "<td>" + users.data[i].email + "</td>" + "<td><img class=\"avatar\" src='" + users.data[i].avatar + "' /></td>" + "<td><input type=\"button\" value=\"مشاهده بیشتر\" onclick=\"deleteRow(this)\" class=\"btn btn-info\"></td>" + "</tr>";
+                    document.getElementById("info-tbl").innerHTML = document.getElementById("info-tbl").innerHTML + "<td>" + users.data[i].id + "</td>" + "<td>" + users.data[i].first_name + "</td>" + "<td>" + users.data[i].last_name + "</td>" + "<td>" + users.data[i].email + "</td>" + "<td><img class=\"avatar\" src='" + users.data[i].avatar + "' /></td>" + "<td><input type=\"button\" value=\"مشاهده بیشتر\" onclick=\"moreInfo("+users.data[i].id+")\"  data-toggle=\"modal\" data-target=\"#moreUserInfo\" class=\"btn btn-info\"></td>" + "</tr>";
                 }
             }
         })
     }
+    function moreInfo(userId){
+        $("#label_id").html("");
+        $("#label_email").html("");
+        $("#label_first_name").html("");
+        $("#label_last_name").html("");
+        $("#label_avatar").html("");
+
+            $.ajax({
+                url : "https://reqres.in/api/users/"+userId ,
+                success :function(information){
+                    $("#label_id").html(information.data.id);
+                    $("#label_email").html(information.data.email);
+                    $("#label_first_name").html(information.data.first_name);
+                    $("#label_last_name").html(information.data.last_name);
+                    $("#label_avatar").attr("src" , information.data.avatar);
+                }
+            }
+            )
+            // let result = confirm("نمایش بیشتر کاربر");
+            // if (result){
+            //     var i = element.parentNode.parentNode.rowIndex;
+            //     document.getElementById("count-tbl").moreInfo(i);
+            // }
+        }
 </script>
 
 </html>
